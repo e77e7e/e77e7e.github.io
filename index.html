@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: black;
+        }
+
+        .wave {
+            width: 100%;
+            height: 100px;
+        }
+
+        .wave path {
+            fill: none;
+            stroke: rgb(0, 168, 107);
+            stroke-width: 5;
+            filter: url(#glow);
+        }
+
+        .human {
+            position: fixed;
+            bottom: 3rem;
+            width: 106%;
+        }
+        h1{
+            
+            font-size: xx-large;
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            animation: colorChanging 1.4s linear infinite ;
+
+        }
+        .krk{
+            background-color: rgb(255, 191, 0);
+            height: 38px;
+            width: 90px;
+            border-radius: 16px;
+            border: none;
+            
+
+        }
+        button{
+            display: block;
+            margin: 0 auto;
+        }
+        .rag {
+    position: fixed;
+    width: 40vw;
+    height: 40vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: white;
+    font-family: "Press Start 2P", monospace;
+}
+
+.gg {
+    width: 100%;
+    height: 40px;
+    background-color: gray;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+        
+        
+@keyframes colorChanging {
+    0%{color: red;}
+    12%{color: orangered;}
+    25%{color: orange;}
+    36%{color: yellow;}
+    50%{color: greenyellow;}
+    63%{color: green;}
+    75%{color: blue;}
+    88%{color: indigo;}
+    100%{color: blueviolet;}}
+.moo{
+    font-style: italic;
+}
+    </style>
+</head>
+
+<body>
+
+<div class="human">
+
+    <svg class="wave" viewBox="0 0 400 100" preserveAspectRatio="none">
+
+        <defs>
+            <filter id="glow">
+                <feGaussianBlur stdDeviation="4" result="blur"/>
+                <feMerge>
+                    <feMergeNode in="blur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
+        </defs>
+
+        <path d="M0,50 Q50,0 100,50 T200,50 T300,50 T400,50">
+
+            <animate
+                attributeName="d"
+                dur="8s"
+                repeatCount="indefinite"
+                values="
+                M0,50 Q50,0 100,50 T200,50 T300,50 T400,50;
+                M0,50 Q50,100 100,50 T200,50 T300,50 T400,50;
+                M0,50 Q50,0 100,50 T200,50 T300,50 T400,50
+                "
+            />
+
+        </path>
+
+    </svg>
+
+</div>
+<div class="rag" id="rug" style="display: none;">
+    <header class="gg"></header>
+    <p>Hello grandma,</p>
+    <p>Dev3399 wishes you a happy birthday with lots of love.</p>
+
+    
+
+<p>from your grandchild, Dev3399</p>
+<p class="m00">~Raphael</p>
+</div>
+
+
+<h1>Happy Birthday, Grandma!</h1>
+<button class="krk" id="ondi" onclick="displayRug()">continua</button>
+<script>
+    function displayRug(){
+        let Rug= document.getElementById("rug")
+        if(Rug.style.display==="none"){
+            Rug.style.display="block"
+        }
+        else{
+            Rug.style.display="none"
+        }
+    }
+    let windowBox = document.getElementById("rug");
+let header = document.querySelector(".gg");
+
+let dragging = false;
+let offsetX = 0;
+let offsetY = 0;
+
+header.addEventListener("mousedown", function(e) {
+    dragging = true;
+
+    offsetX = e.clientX - windowBox.getBoundingClientRect().left;
+    offsetY = e.clientY - windowBox.getBoundingClientRect().top;
+});
+
+document.addEventListener("mousemove", function(e) {
+    if (!dragging) return;
+
+    windowBox.style.left = (e.clientX - offsetX) + "px";
+    windowBox.style.top = (e.clientY - offsetY) + "px";
+});
+
+document.addEventListener("mouseup", function() {
+    dragging = false;
+});
+
+</script>
+</body>
+</html>
